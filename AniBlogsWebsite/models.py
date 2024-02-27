@@ -16,7 +16,7 @@ class Blog(models.Model):
     BlogDescription = models.CharField(max_length=500, blank=False, default="")
     BlogKeywords = models.CharField(max_length = 5000, blank = False, default = "")
     BlogDateAdded = models.CharField(max_length=20, blank=False, default="")
-    BlogImage = models.ImageField(upload_to="BlogsImages")
+    BlogImage = models.CharField(max_length = 5000, default = "")
     BlogSlug = models.CharField(max_length=400, default="")
     BlogCategory = models.CharField(max_length=100, choices=cat, default="")
     BlogPost = models.TextField(max_length=10000, blank=False, default="")
