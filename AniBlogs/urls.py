@@ -23,7 +23,8 @@ from django.views.static import serve
 urlpatterns = [
     path('AniBlogs/anirbanbhattacharyaAniBlogzAdmin/', admin.site.urls),
     path('', include("AniBlogsWebsite.urls")),
-    re_path(r'^UserProfilePhoto/(?P<path>.*)$', serve, {'document_root' : settings.MEDIA_ROOT})
+    re_path(r'^UserProfilePhoto/(?P<path>.*)$', serve, {'document_root' : settings.MEDIA_ROOT}),
+    re_path(r'^Images/(?P<path>.*)$', serve, {'document_root' : settings.IMAGE_ROOT}),
 ]
 admin.site.site_header = "AniBlogs Admin Panel"
 admin.site.index_title = "Welcome to AniBlogs"

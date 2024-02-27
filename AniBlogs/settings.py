@@ -122,6 +122,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR / 'static')
 MEDIA_URL = '/UserProfilePhoto/'
 MEDIA_ROOT = os.path.join(BASE_DIR / 'UserProfilePhoto')
+IMAGE_URL = '/Images/'
+IMAGE_ROOT = os.path.join(BASE_DIR / 'Images')
 
 CSRF_TRUSTED_ORIGINS = ["https://aniblogs.anirbanbhattacharya.in"]
 
