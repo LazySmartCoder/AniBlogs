@@ -17,8 +17,8 @@ user_otp = otpGen()
 def sendEmail(receiver_name, receiver_email, subject, message):
     send_email = smtplib.SMTP("smtp.gmail.com", port=587)
     send_email.starttls()
-    send_email.login("officials.aniblogs@gmail.com", "sojctrgtydvydyuz")
-    send_email.sendmail("no-reply@aniblogs.anirbanbhattacharya.in", receiver_email, f"Subject: {subject}\n" + f"Hello {receiver_name},\n{message}")
+    send_email.login("contact.anirbanbhattacharya@gmail.com", "vhhebpfnrusmlcwp")
+    send_email.sendmail("no-reply@anirbanbhattacharya.in", receiver_email, f"Subject: {subject}\n" + f"Hello {receiver_name},\n{message}")
     send_email.quit()
     return None
 
@@ -99,10 +99,9 @@ def RegisterDone(request):
         creating_user.save()
         authenticating = authenticate(username=email, password=pass1)
         if authenticating is not None:
-            sendEmail(name, email, "Account Created", "Welcome to the AniBlogs community! 🎉 We're delighted to inform you that your account has been created. Your support means the world to us, and we're thrilled to have you on board. Kindly note that the email address you used to create your account is now permanent. Rest assured, it will be your trusted companion throughout your journey with us. Once again, thank you for choosing AniBlogs. We look forward to sharing many wonderful experiences together.\nWarm regards,\nAnirban Bhattacharya\nAniBlogs Team")
+            sendEmail(name, email, "Account Created", "Welcome to the AniBlogs community! We're delighted to inform you that your account has been created. Your support means the world to us, and we're thrilled to have you on board. Kindly note that the email address you used to create your account is now permanent. Rest assured, it will be your trusted companion throughout your journey with us. Once again, thank you for choosing AniBlogs. We look forward to sharing many wonderful experiences together.\nWarm regards,\nAnirban Bhattacharya\nAniBlogs Team")
             login(request, authenticating)
             userdet = User.objects.get(username = request.user.username)
-            print(userdet)
             creating_profile_photo = ProfilePhoto(UserDetails = userdet, Photo = "UserProfilePhoto/User profile.png")
             creating_profile_photo.save()
             messages.success(request, "Your AniBlogs account has been created.")
