@@ -18,7 +18,7 @@ def otpGen():
     return otp
 user_otp = otpGen()
 
-def sendEmail(receiver_email, subject, message):
+def sendEmail(receiver_name, receiver_email, subject, message):
     msg = MIMEMultipart()
     msg['From'] = formataddr((str(Header('AniBlogs')), "no-reply@anirbanbhattacharya.in"))
     msg['To'] = receiver_email
