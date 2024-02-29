@@ -109,7 +109,7 @@ def RegisterDone(request):
         creating_user.save()
         authenticating = authenticate(username=email, password=pass1)
         if authenticating is not None:
-            sendEmail(name, email, "Account Created", "Welcome to the AniBlogs community! We're delighted to inform you that your account has been created. Your support means the world to us, and we're thrilled to have you on board. Kindly note that the email address you used to create your account is now permanent. Rest assured, it will be your trusted companion throughout your journey with us. Once again, thank you for choosing AniBlogs. We look forward to sharing many wonderful experiences together.\nWarm regards,\nAnirban Bhattacharya\nAniBlogs Team")
+            sendEmail(name, email, "Account Created", "Welcome to the AniBlogs community! We're delighted to inform you that your account has been created. Your support means the world to us, and we're thrilled to have you on board. Kindly note that the email address you used to create your account is now permanent. Rest assured, it will be your trusted companion throughout your journey with us. Once again, thank you for choosing AniBlogs. We look forward to sharing many wonderful experiences together.")
             login(request, authenticating)
             userdet = User.objects.get(username = request.user.username)
             creating_profile_photo = ProfilePhoto(UserDetails = userdet, Photo = "UserProfilePhoto/User profile.png")
@@ -171,7 +171,7 @@ def EditUserProfile(request):
                     edit_comments = BlogComment.objects.get(UserDetails = user_details)
                     edit_comments.User_ProfilePhoto = get_photo.Photo
                     edit_comments.save()
-            sendEmail(name, email, "Profile Updated", "We are pleased to inform you that your AniBlogs profile has been updated. Your commitment to enhancing your profile is truly appreciated, and we extend our heartfelt gratitude for your attention to detail. Thank you for choosing AniBlogs as your platform for expression and connection. Your dedication enriches our community, and we look forward to continuing this journey together.\nRegards\nAnirban Bhattacharya\nAniBlogs Team")
+            sendEmail(name, email, "Profile Updated", "We are pleased to inform you that your AniBlogs profile has been updated. Your commitment to enhancing your profile is truly appreciated, and we extend our heartfelt gratitude for your attention to detail. Thank you for choosing AniBlogs as your platform for expression and connection. Your dedication enriches our community, and we look forward to continuing this journey together.")
             messages.success(request, "Your profile has been updated.")
         else:
             messages.warning(request, "Incorrect password entered.")
@@ -183,7 +183,7 @@ def DeleteAccount(request):
         pwd = request.POST["password"]
         if check_password(pwd, request.user.password):
             userdet = User.objects.get(username=request.user.username)
-            sendEmail(request.user.first_name, request.user.username, "Account Deleted", "It is with a heavy heart that we bid you farewell. Your departure saddens us deeply, but it also serves as a poignant reminder of the importance of continually improving our service. Your feedback is invaluable in this pursuit of excellence. We kindly request that you take a moment to share your thoughts on our website or simply reply to this email. Rest assured, every comment and suggestion will be carefully considered as we strive to enhance our offerings. Thank you for entrusting us with your experience, and we sincerely hope to have the opportunity to serve you again in the future.\nRegards\nAnirban Bhattacharya\nAniBlogs Team")
+            sendEmail(request.user.first_name, request.user.username, "Account Deleted", "It is with a heavy heart that we bid you farewell. Your departure saddens us deeply, but it also serves as a poignant reminder of the importance of continually improving our service. Your feedback is invaluable in this pursuit of excellence. We kindly request that you take a moment to share your thoughts on our website or simply reply to this email. Rest assured, every comment and suggestion will be carefully considered as we strive to enhance our offerings. Thank you for entrusting us with your experience, and we sincerely hope to have the opportunity to serve you again in the future.")
             userdet.delete()
             messages.success(request, "We are really feeling very bad to see you go.")
             return redirect("HomePage")
@@ -208,7 +208,7 @@ def EmailVerified(request):
             userdet = User.objects.get(username=email)
             userdet.email = "None"
             userdet.save()
-            sendEmail(request.user.first_name, userdet.username, "Email Verified", "We extend our sincere gratitude to you for verifying your email address. Your prompt action reflects a commendable sense of responsibility, and we truly appreciate your diligence. Thank you for demonstrating your commitment to maintaining the integrity of our platform. Should you require any further assistance or have any questions, please do not hesitate to reach out to us. Once again, thank you for your cooperation and trust in our services.\nRegards\nAnirban Bhattacharya\nAniBlogs Team")
+            sendEmail(request.user.first_name, userdet.username, "Email Verified", "We extend our sincere gratitude to you for verifying your email address. Your prompt action reflects a commendable sense of responsibility, and we truly appreciate your diligence. Thank you for demonstrating your commitment to maintaining the integrity of our platform. Should you require any further assistance or have any questions, please do not hesitate to reach out to us. Once again, thank you for your cooperation and trust in our services.")
             messages.success(request, "Your email has been verified.")
             return redirect("HomePage")
         else:
@@ -243,7 +243,7 @@ def ChangePassword(request):
             userdet.save()
             userDet = User.objects.get(username=email)
             login(request, userDet)
-            sendEmail(request.user.first_name, request.user.username, "Password Changed", "We are pleased to inform you that your request to change your AniBlogs account password has been processed. Your proactive approach to account security is commendable, and we thank you for taking the necessary steps to safeguard your information. Should you encounter any issues or have any concerns, please feel free to reach out to us for assistance. Thank you for entrusting us with your online presence, and we remain committed to providing you with a secure and reliable platform for your blogging endeavors.\nRegards\nAnirban Bhattacharya\nAniBlogs Team")
+            sendEmail(request.user.first_name, request.user.username, "Password Changed", "We are pleased to inform you that your request to change your AniBlogs account password has been processed. Your proactive approach to account security is commendable, and we thank you for taking the necessary steps to safeguard your information. Should you encounter any issues or have any concerns, please feel free to reach out to us for assistance. Thank you for entrusting us with your online presence, and we remain committed to providing you with a secure and reliable platform for your blogging endeavors.")
             messages.success(request, "Your password has been changed.")
         else:
             messages.warning(request, "Incorrect password entered.")
