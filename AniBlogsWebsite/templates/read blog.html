@@ -46,11 +46,13 @@
 
                 <div class="col-lg-12">
                   {% if request.user.is_authenticated %}
+                  {% if request.user.email == "None" %}
                   <br>
                   <a href="/like-blog/{{blogid}}"><button class="btn btn-outline-success"><i class="fa fa-thumbs-up"></i> Like ({{likes}})</button></a>
                   {% else %}
                   <br>
                   <a><button disabled class="btn btn-outline-success"><i class="fa fa-thumbs-up"></i> Like ({{likes}})</button></a>
+                  {% endif %}
                   {% endif %}
                   <div class="sidebar-item comments">
                     <div class="sidebar-heading">
