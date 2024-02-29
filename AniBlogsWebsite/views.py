@@ -5,6 +5,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.hashers import check_password
 import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.header import Header
+from email.utils import formataddr
 
 def otpGen():
     import random
@@ -14,12 +18,18 @@ def otpGen():
     return otp
 user_otp = otpGen()
 
-def sendEmail(receiver_name, receiver_email, subject, message):
-    send_email = smtplib.SMTP("smtp.gmail.com", port=587)
-    send_email.starttls()
-    send_email.login("contact.anirbanbhattacharya@gmail.com", "vhhebpfnrusmlcwp")
-    send_email.sendmail("no-reply@anirbanbhattacharya.in", receiver_email, f"Subject: {subject}\n" + f"Hello {receiver_name},\n{message}")
-    send_email.quit()
+def sendEmail(receiver_email, subject, message):
+    msg = MIMEMultipart()
+    msg['From'] = formataddr((str(Header('AniBlogs')), "no-reply@anirbanbhattacharya.in"))
+    msg['To'] = receiver_email
+    msg["Subject"] = subject
+    html = message
+    msg.attach(MIMEText(html, 'html'))
+    s = smtplib.SMTP('smtp.gmail.com', port=587)
+    s.starttls()
+    s.login("contact.anirbanbhattacharya@gmail.com", "vhhebpfnrusmlcwp")
+    s.sendmail("no-reply@anirbanbhattacharya.in", receiver_email, msg.as_string())
+    s.quit()
     return None
 
 # AniBlogs views starts here.
