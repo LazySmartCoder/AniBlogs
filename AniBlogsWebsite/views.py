@@ -160,6 +160,9 @@ def EditUserProfile(request):
             userdet.first_name = name
             userdet.last_name = phone
             userdet.save()
+            edit_comments = BlogComment.objects.get(UserDetails = user_details)
+            edit_comments.Name = name
+            edit_comments.save()
             userDet = User.objects.get(username=email)
             if len(request.FILES) != 0:
                 photo = request.FILES["photo"]
