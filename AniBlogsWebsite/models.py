@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Blog(models.Model):
     cat = (
         ("Top Trends", "Top Trends"),
-        ("Stock Market", "Stock Market"),
+        ("Entertainment", "Entertainment"),
         ("Shark Tank India", "Shark Tank India"),
         ("Technology", "Technology"),
         ("Good Reads", "Good Reads"),
