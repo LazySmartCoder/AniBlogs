@@ -6,7 +6,6 @@
 {% block desc %}{{desc}}{% endblock %}
 
     {% block body %}
-    <body style="background-color: white; color: white;">
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Satisfy" rel="stylesheet">
     <!-- Page Content -->
     <!-- Banner Starts Here -->
@@ -17,14 +16,13 @@
             <div class="col-lg-12">
               <div class="text-content">
                 <h4>{{cat}}</h4>
-                <h1>{{name}}</h1>
+                <h1 style="color: white;">{{name}}</h1>
               </div>
             </div>
           </div>
         </div>
       </section>
     </div>
-    <section class="blog-posts grid-system">
 
     <section class="blog-posts grid-system">
       <div class="container">
@@ -33,7 +31,6 @@
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
         <br>
-      <div class="container">
         <div class="row">
           <div class="col-lg-8">
             <div class="all-blog-posts">
@@ -173,7 +170,7 @@
   border: 2px solid #fff; /* Optional - Add border to the circle */
 }
       body {
-  background: #eee
+  background: white
 }
 
 .card {
@@ -251,5 +248,4 @@
   height: 40px
 }
   </style>
-    </body>
     {% endblock %}
