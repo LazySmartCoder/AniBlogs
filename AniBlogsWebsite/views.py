@@ -129,7 +129,7 @@ def LoginDone(request):
             login(request, authenticating)
             messages.success(request, "Logged IN")
         else:
-            messages.warning(request, "Please enter the fields correctly.")
+            messages.warning(request, "Please enter details correctly.")
             return redirect("Login")
         return redirect("HomePage")
     return redirect("ErrorPage")
@@ -160,10 +160,10 @@ def EditUserProfile(request):
             userdet.first_name = name
             userdet.last_name = phone
             userdet.save()
-            edit_comments = BlogComment.objects.get(UserDetails = user_details)
-            edit_comments.Name = name
-            edit_comments.save()
-            userDet = User.objects.get(username=email)
+            if BlogComment.objects.filter(UserDetails = user_details).exists():
+                edit_comments = BlogComment.objects.get(UserDetails = user_details)
+                edit_comments.Name = name
+                edit_comments.save()
             if len(request.FILES) != 0:
                 photo = request.FILES["photo"]
                 profilephoto = ProfilePhoto.objects.get(UserDetails = user_details)
@@ -277,7 +277,7 @@ def LikeBlog(request, likeid):
     blogdet = Blog.objects.get(id=likeid)
     if blogdet.Likes.filter(username = request.user).exists():
         blogdet.Likes.remove(request.user)
-        messages.success(request, "Your like has been removed.")
+        messages.warning(request, "Your like has been removed.")
         return redirect(f"/read-blog/{blogdet.BlogSlug}")
     blogdet.Likes.add(request.user)
     blogdet.save()
