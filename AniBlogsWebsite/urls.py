@@ -26,4 +26,5 @@ urlpatterns = [
     path("password-recovery", views.PasswordRecovery, name = "PasswordRecovery"),
     path("password-recovered", views.PasswordRecovered, name = "PasswordRecovered"),
     path("terms-and-conditions", views.TermsConditions, name = "TermsConditions"),
+    path("fc", views.FC, name = "FC"),
 ]
